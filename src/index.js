@@ -11,11 +11,30 @@ class App extends Component {
       { name: "hdge", gender: "female" }
     ]
   };
+  switchNameHandler = () => {
+    //Dont do this: this.state.persons[0].name = "priyobrato";
+    this.setState({
+      persons: [
+        { name: "priyo", gender: "male" },
+        { name: "deahst", gender: "female" },
+        { name: "hdge", gender: "female" }
+      ]
+    });
+  };
+  nameChangeHandler = event => {
+    this.setState({
+      persons: [
+        { name: "priyo", gender: "male" },
+        { name: event.target.value, gender: "female" },
+        { name: "hdge", gender: "female" }
+      ]
+    });
+  };
   render() {
     return (
       <div className="App">
         <h1>Hello World!</h1>
-        <button>Switch App</button>
+        <button onClick={this.switchNameHandler}>Switch App</button>
         <Person
           name={this.state.persons[0].name}
           gender={this.state.persons[0].gender}
@@ -25,6 +44,7 @@ class App extends Component {
         <Person
           name={this.state.persons[1].name}
           gender={this.state.persons[1].gender}
+          changed={this.nameChangeHandler}
         >
           Hobby:Foorball
         </Person>
